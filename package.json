@@ -1,0 +1,27 @@
+{
+  "name": "serverjs-todolist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.10.5",
+    "nodemon": "^2.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mbfurlan15/todolist-serverjs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mbfurlan15/todolist-serverjs/issues"
+  },
+  "homepage": "https://github.com/mbfurlan15/todolist-serverjs#readme"
+}
