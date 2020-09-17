@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 class ConnectDB{
     static conectarMongo(){
         // conectando ao banco de dados   
-        const DB_KEY = "mongodb+srv://admin:SMuAfZ9CpMYS0kt8@cluster0.ozlnb.gcp.mongodb.net/tarefa?retryWrites=true&w=majority"
+        const DB_KEY = "mongodb+srv://admin:eLTGU7mcFYEutYKh@cluster0.ozlnb.gcp.mongodb.net/tarefa?retryWrites=true&w=majority"
         
         mongoose.connect(DB_KEY, {
             useNewUrlParser: true,
