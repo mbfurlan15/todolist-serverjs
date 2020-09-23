@@ -3,10 +3,30 @@ const ToDo = require ("../models/todo")
 
 var router = express.Router()
 
-router.get("/",(req, res)=>{
-    ToDo.find((err, arr)=>{
+/* router.get("/",async (req, res)=>{
+    let tasks = {};
+    await ToDo.find({done: false}, (err, arrUndone)=>{
         if(err) return res.send("Não foi possível buscar");
-        res.json(arr);
+        tasks.undone = arrUndone;
+    });
+    await ToDo.find({done: true}, (err, arrDone)=>{
+        if(err) return res.send("Não foi possível buscar");
+        tasks.done = arrDone;
+    });
+
+    res.json(tasks);
+}); */
+router.get("/undone",async (req, res)=>{
+    await ToDo.find({done: false}, (err, arrUndone=[])=>{
+        if(err) return res.send("Não foi possível buscar");
+        res.json(arrUndone);
+    });
+});
+
+router.get("/done",async (req, res)=>{
+    await ToDo.find({done: true}, (err, arrDone=[])=>{
+        if(err) return res.send("Não foi possível buscar");
+        res.json(arrDone);
     });
 });
 
