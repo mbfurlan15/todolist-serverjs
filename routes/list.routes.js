@@ -30,6 +30,13 @@ router.get("/done",async (req, res)=>{
     });
 });
 
+router.get("/all",async (req, res)=>{
+    await ToDo.find((err, all=[])=>{
+        if(err) return res.send("Não foi possível buscar");
+        res.json(all);
+    });
+});
+
 router.post("/", (req, res)=>{
     const tarefa = new ToDo(req.body);
     tarefa.save()

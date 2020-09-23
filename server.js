@@ -1,9 +1,11 @@
 const express = require("express");
+var cors = require("cors");
 const DB = require("./db/connectdb");
 
 DB.conectarMongo()
-const app = express()
-app.use(express.json())
+const app = express();
+app.use(express.json());
+app.use(cors());
 const workRouter = require("./routes/list.routes")
 app.use("/list", workRouter)
 
