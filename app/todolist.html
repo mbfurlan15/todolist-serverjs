@@ -33,18 +33,21 @@
 
                 //armazena os dados em array local
                 list = json;
-
+                montarLista(json);
+            });
+          }
+         function montarLista(arr){
+           
                 //monta a tela
                 let html = `<li class="list-group-item active">Tarefas</li>`
-                json.forEach((element, index) => {
+                arr.forEach((element, index) => {
                   
                   let classDone = (element.done==true)? "done":"undone"
                     html += `<li id="d${index}" class="list-group-item ${classDone}" onclick="doneTask('${index}')">${element.work}
                       <button type="button" class="btn btn-danger" onclick="deletarTarefa('${index}')">Delete</button></li>`
                   });
                 document.querySelector(".list-group").innerHTML = html;
-            });
-        } 
+          }
 
         function doneTask(index){
           //Muda na API
@@ -75,16 +78,23 @@
           //Enviar para o banco de dados
           fetch("http://localhost:3000/list/",{
           method:'POST',
-          headers: {"Content-Type": "application/json"},
+          headers: {'Content-Type': 'application/json'},
           body: JSON.stringify(
             {
               work: document.getElementById("work").value,
               desc: document.getElementById("desc").value,
               done: false
             }),
-          })
-        limpForms();
-        window.location.reload();
+          }).then(async (res)=>{
+            let obj = await res.json();
+            window.alert(obj);
+            list.push(obj);
+            //carregarTarefas()
+            montarLista(list);
+            limpForms();
+
+          });
+        //window.location.reload();
         }
 
         function deletarTarefa(index){
@@ -93,8 +103,12 @@
           method:'DELETE',
           headers: {"Content-Type": "application/json"},
           
-          })
-        window.location.reload();
+          }).then((res)=>{
+            list.splice(index,1);
+            montarLista(list);
+            //carregarTarefas();
+          });
+        //window.location.reload();
         }
 
         function limpForms(){
