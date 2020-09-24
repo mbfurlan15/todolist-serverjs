@@ -40,7 +40,7 @@ router.get("/all",async (req, res)=>{
 router.post("/", (req, res)=>{
     const tarefa = new ToDo(req.body);
     tarefa.save()
-    .then(()=>res.send("Cadastrado com sucesso"))
+    .then((t)=>res.json(t))
    .catch(()=> res.send("Erro ao cadastrar"));
 });
 

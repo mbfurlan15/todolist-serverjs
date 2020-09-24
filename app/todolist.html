@@ -87,7 +87,6 @@
             }),
           }).then(async (res)=>{
             let obj = await res.json();
-            window.alert(obj);
             list.push(obj);
             //carregarTarefas()
             montarLista(list);
